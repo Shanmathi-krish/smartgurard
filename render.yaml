@@ -1,7 +1,12 @@
 services:
   - type: static
     name: smartguard-frontend
+    # Primary build command - Node.js script approach
     buildCommand: node build.js
+    # Alternative build commands (uncomment one if primary fails):
+    # buildCommand: npm install && npm run render-build-simple
+    # buildCommand: npm install && npm run render-build-yarn
+    # buildCommand: npm install && npm run render-build-node
     staticPublishPath: ./dist
     routes:
       - type: rewrite
