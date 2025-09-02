@@ -1,7 +1,7 @@
 services:
   - type: static
     name: smartguard-frontend
-    buildCommand: npm ci && npx vite build
+    buildCommand: npm install && npm run render-build-explicit
     staticPublishPath: ./dist
     routes:
       - type: rewrite
