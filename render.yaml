@@ -1,12 +1,12 @@
 services:
   - type: static
     name: smartguard-frontend
-    # Primary build command - Node.js script approach
-    buildCommand: node build.js
+    # Primary build command - npx approach (bypasses binary permission issues)
+    buildCommand: npm install && npm run build
     # Alternative build commands (uncomment one if primary fails):
-    # buildCommand: npm install && npm run render-build-simple
+    # buildCommand: npm install && npx vite build
     # buildCommand: npm install && npm run render-build-yarn
-    # buildCommand: npm install && npm run render-build-node
+    # buildCommand: node build.js
     staticPublishPath: ./dist
     routes:
       - type: rewrite
