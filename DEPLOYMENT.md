@@ -1,5 +1,14 @@
 # SmartGuard Deployment Guide for Render
 
+## ⚠️ IMPORTANT: Use Static Site, NOT Web Service!
+
+**Your Vite React app must be deployed as a Static Site, not a Web Service!**
+
+### Why Static Site?
+- **Web Service**: Expects a Node.js server running continuously (like Express.js)
+- **Static Site**: Serves pre-built HTML/CSS/JS files (perfect for React apps)
+- **Vite builds**: Creates static files in `dist/` folder that just need to be served
+
 ## Prerequisites
 - GitHub repository with your SmartGuard code
 - Render account (free tier available)
@@ -14,19 +23,11 @@ git commit -m "Prepare for Render deployment"
 git push origin main
 ```
 
-### 2. Deploy on Render
+### 2. Deploy on Render (Static Site)
 
-#### Option A: Using render.yaml (Recommended)
+#### Option A: Manual Configuration (Recommended)
 1. Go to [Render Dashboard](https://dashboard.render.com/)
-2. Click "New +" → "Static Site"
-3. Connect your GitHub repository
-4. Render will automatically detect the `render.yaml` file
-5. Click "Create Static Site"
-
-#### Option B: Manual Configuration
-If you prefer manual setup:
-1. Go to [Render Dashboard](https://dashboard.render.com/)
-2. Click "New +" → "Static Site"
+2. Click "New +" → **"Static Site"** (NOT Web Service!)
 3. Connect your GitHub repository
 4. Configure the following:
    - **Name**: smartguard (or your preferred name)
@@ -34,6 +35,14 @@ If you prefer manual setup:
    - **Build Command**: `npm install && npm run build`
    - **Publish Directory**: `dist`
    - **Node Version**: 18 (or latest LTS)
+5. Click "Create Static Site"
+
+#### Option B: Using render.yaml
+1. Go to [Render Dashboard](https://dashboard.render.com/)
+2. Click "New +" → **"Static Site"** (NOT Web Service!)
+3. Connect your GitHub repository
+4. Render will automatically detect the `render.yaml` file
+5. Click "Create Static Site"
 
 ### 3. Environment Variables (if needed)
 If your app requires environment variables:
@@ -69,16 +78,30 @@ Optimized for production with:
 
 ## Troubleshooting
 
-### Build Failures
-- Check that all dependencies are in `package.json`
-- Ensure Node.js version compatibility
-- Review build logs in Render dashboard
+### ❌ "vite permission denied" Error
+**Problem**: You're deploying as a Web Service instead of Static Site
+**Solution**: 
+1. Delete your current Web Service on Render
+2. Create a new Static Site instead
+3. Use the settings above
 
-### Routing Issues
+### ❌ Build Failures
+- Check that all dependencies are in `package.json`
+- Ensure Node.js version compatibility (use version 18)
+- Review build logs in Render dashboard
+- Make sure you're using `npm install && npm run build`
+
+### ❌ "Cannot find module" Errors
+- Ensure all dependencies are in `dependencies` or `devDependencies`
+- Run `npm install` locally to test
+- Check that `package-lock.json` is committed
+
+### ✅ Routing Issues
 - The `render.yaml` includes SPA routing configuration
 - All routes are rewritten to `/index.html`
+- This ensures React Router works correctly
 
-### Performance
+### ✅ Performance
 - Assets are cached for 1 year
 - Code is split into vendor and router chunks
 - Terser minification is enabled

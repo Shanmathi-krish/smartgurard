@@ -1,14 +1,9 @@
 services:
-  - type: web
+  - type: static
     name: smartguard
-    env: static
-    buildCommand: npm ci --only=production=false && npm run build
+    buildCommand: npm install && npm run build
     staticPublishPath: ./dist
     nodeVersion: 18
-    installCommand: npm ci --only=production=false
-    envVars:
-      - key: NODE_ENV
-        value: production
     headers:
       - path: /*
         name: X-Frame-Options
