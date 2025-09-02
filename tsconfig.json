@@ -1,12 +1,14 @@
 {
-  
   "compilerOptions": {
-    "noUnusedLocals": false,
-    "noUnusedParameters": false,
+    "target": "ESNext",
+    "useDefineForClassFields": true,
+    "module": "ESNext",
+    "moduleResolution": "Node",
+    "strict": true,
+    "jsx": "react-jsx",          // ✅ This is the key line
+    "esModuleInterop": true,
     "skipLibCheck": true,
-    "strict": false
-  }
-
-
+    "forceConsistentCasingInFileNames": true
+  },
+  "include": ["src"]
 }
-
