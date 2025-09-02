@@ -51,7 +51,8 @@
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview --host 0.0.0.0 --port $PORT",
     "postinstall": "echo 'Dependencies installed successfully'",
-    "render-build": "npm run build"
+    "render-build": "npm run build",
+    "render-build-explicit": "npx vite build"
   },
   "browserslist": {
     "production": [
