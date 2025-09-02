@@ -55,10 +55,11 @@
     "render-build-explicit": "npx vite build",
     "render-build-fullpath": "node_modules\\.bin\\vite build",
     "render-build-yarn": "yarn install && yarn build",
-    "render-build-node": "node ./node_modules/vite/bin/vite.js build"
+    "render-build-node": "node ./node_modules/vite/bin/vite.js build",
+    "render-build-simple": "npm install && node ./node_modules/vite/bin/vite.js build"
   },
   "engines": {
-    "node": ">=18.0.0"
+    "node": ">=20.0.0"
   },
   "browserslist": {
     "production": [

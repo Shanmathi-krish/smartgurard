@@ -1,7 +1,7 @@
 services:
   - type: static
     name: smartguard-frontend
-    buildCommand: npm install && npm run render-build-fullpath
+    buildCommand: node build.js
     staticPublishPath: ./dist
     routes:
       - type: rewrite
@@ -9,4 +9,4 @@ services:
         destination: /index.html
     envVars:
       - key: NODE_VERSION
-        value: 18.0.0
+        value: 20.0.0
